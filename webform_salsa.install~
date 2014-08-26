@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @file
+ * defines database schema
+ */
+
+/**
+ * Implements hook_schema().
+ */
+
+function webform_salsa_schema() {
+
+  $schema['webform_salsa_options'] = array(
+    'description' => 'Stores options for Webform External API',
+    'fields' => array(
+      'oid' => array(
+        'description' => 'Unique identifier for option set',
+        'type' => 'serial',
+        'size' => 'big',
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'nid of webform node',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'salsa_enabled' => array(
+        'description' => 'Enable Salsa integration',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+      ),
+      'salsa_node_url' => array(
+        'description' => 'URL to access Salsa API',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+      'salsa_organization_key' => array(
+        'description' => 'Salsa organization key',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'salsa_chapter_key' => array(
+        'description' => 'Salsa chapter key',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'salsa_account_email' => array(
+        'description' => 'Email of Salsa user account',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+      'salsa_password' => array(
+        'description' => 'Password of Salsa user account',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+      'salsa_field_mapping' => array(
+        'description' => 'Salsa field mapping',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'salsa_boolean_field_mapping' => array(
+        'description' => 'Salsa checkbox to boolean mapping',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'salsa_groups_field_mapping' => array(
+        'description' => 'Salsa checkbox to groups mapping',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'salsa_group_id' => array(
+        'description' => 'Salsa group id',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'salsa_tag' => array(
+        'description' => 'Salsa tags',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('oid'),
+    'unique keys' => array(
+      'oid' => array('oid')
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+    ),
+  );
+
+  return $schema;
+
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function webform_salsa_uninstall() {
+  variable_del('webform_salsa_node_url');
+  variable_del('webform_salsa_organization_key');
+  variable_del('webform_salsa_chapter_key');
+  variable_del('webform_salsa_account_email');
+  variable_del('webform_salsa_password');
+  variable_del('webform_salsa_group_id');
+  variable_del('webform_salsa_tag');
+}
+
+
