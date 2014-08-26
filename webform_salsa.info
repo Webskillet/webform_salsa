@@ -1,7 +1,7 @@
 name = Webform Salsa
 description = "Allows webforms to place data into external Salsalabs database using the Salsa API"
 core = 7.x
-version = 7.x-1.1-beta
+version = 7.x-1.1
 dependencies[] = webform
 package = Webform
 configure = admin/config/content/webform-salsa
